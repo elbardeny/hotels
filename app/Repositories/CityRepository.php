@@ -8,6 +8,6 @@ class CityRepository extends Repository
 {
     public function __construct(City $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 }

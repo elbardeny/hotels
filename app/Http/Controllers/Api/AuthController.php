@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
     private $userService;
 
     public function __construct(UserService $userService)
@@ -25,15 +24,14 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'error' => null,
-                'token' => $user->createToken('api-token')->plainTextToken
+                'token' => $user->createToken('api-token')->plainTextToken,
             ], 200);
         }
 
         return response()->json([
             'status' => false,
-            'error' => "invalid credentials",
-            'token' => null
+            'error' => 'invalid credentials',
+            'token' => null,
         ], 401);
     }
-
 }

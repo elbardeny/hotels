@@ -9,9 +9,11 @@ use App\Repositories\HotelRepository;
 
 class HotelService
 {
-    private $hotelRepository;
-    private $countryRepository;
-    private $cityRepository;
+    private HotelRepository $hotelRepository;
+
+    private CountryRepository $countryRepository;
+
+    private CityRepository $cityRepository;
 
     public function __construct(HotelRepository $hotelRepository, CountryRepository $countryRepository, CityRepository $cityRepository)
     {
@@ -44,7 +46,7 @@ class HotelService
 
     public function find($id)
     {
-        return $this->hotelRepository->with('roomFacilities')->find($id);
+        return $this->hotelRepository->with(['roomFacilities'])->find($id);
     }
 
     public function update($hotel, $data)

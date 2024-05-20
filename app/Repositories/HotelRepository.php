@@ -9,7 +9,7 @@ class HotelRepository extends Repository
 {
     public function __construct(Hotel $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 
     public function all($filters, $sortColumn, $sortDirection)
@@ -35,18 +35,20 @@ class HotelRepository extends Repository
         $query->join('countries', 'hotels.country_id', '=', 'countries.id');
         $query->join('cities', 'hotels.city_id', '=', 'cities.id');
 
-        if (isset($filters['name']) and $filters['name'])
-            $query->where('hotels.name', 'like', '%' . $filters['name'] . '%');
+        if (isset($filters['name']) and $filters['name']) {
+            $query->where('hotels.name', 'like', '%'.$filters['name'].'%');
+        }
 
-        if (isset($filters['price']) and $filters['price'])
+        if (isset($filters['price']) and $filters['price']) {
             $query->where('hotels.price', $filters['price']);
+        }
 
         if (isset($filters['country']) && $filters['country']) {
-            $query->where('countries.name', 'like', '%' . $filters['country'] . '%');
+            $query->where('countries.name', 'like', '%'.$filters['country'].'%');
         }
 
         if (isset($filters['city']) && $filters['city']) {
-            $query->where('cities.name', 'like', '%' . $filters['city'] . '%');
+            $query->where('cities.name', 'like', '%'.$filters['city'].'%');
         }
 
         return $query;

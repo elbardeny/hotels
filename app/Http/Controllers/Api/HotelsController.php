@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 
 class HotelsController
 {
-
     private $hotelService;
 
     public function __construct(HotelService $hotelService)
@@ -26,7 +25,7 @@ class HotelsController
 
         return response()->json([
             'status' => true,
-            'data' => HotelResource::collection($hotels)
+            'data' => HotelResource::collection($hotels),
         ]);
     }
 
@@ -36,7 +35,7 @@ class HotelsController
 
         return response()->json([
             'status' => true,
-            'data' => HotelResource::make($hotel)
+            'data' => HotelResource::make($hotel),
         ]);
     }
 
@@ -44,18 +43,18 @@ class HotelsController
     {
         $hotel = $this->hotelService->find($id);
 
-        if (!$hotel) {
+        if (! $hotel) {
             return response()->json([
                 'status' => false,
                 'error' => 'hotel not found.',
-                'data' => null
+                'data' => null,
             ], 404);
         }
 
         return response()->json([
             'status' => true,
             'error' => null,
-            'data' => HotelResource::make($hotel)
+            'data' => HotelResource::make($hotel),
         ]);
     }
 
@@ -63,7 +62,7 @@ class HotelsController
     {
         $hotel = $this->hotelService->find($id);
 
-        if (!$hotel) {
+        if (! $hotel) {
             return response()->json([
                 'status' => false,
                 'message' => 'hotel not found.',
@@ -82,7 +81,7 @@ class HotelsController
     {
         $hotel = $this->hotelService->find($id);
 
-        if (!$hotel) {
+        if (! $hotel) {
             return response()->json([
                 'status' => false,
                 'message' => 'hotel not found.',

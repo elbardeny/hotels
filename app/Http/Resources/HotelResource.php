@@ -20,7 +20,7 @@ class HotelResource extends JsonResource
             'country' => $this->country->name,
             'city' => $this->city->name,
             'price' => $this->price,
-            'room_facilities' => RoomFacilityResource::collection($this->roomFacilities)
+            'room_facilities' => RoomFacilityResource::collection($this->roomFacilities),
         ];
     }
 }

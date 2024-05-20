@@ -3,8 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class HotelsListRequest extends FormRequest
 {
@@ -29,15 +27,7 @@ class HotelsListRequest extends FormRequest
             'city' => 'sometimes',
             'price' => 'sometimes',
             'sort_column' => 'sometimes|in:name,country,city,price',
-            'sort_direction' => 'sometimes|in:asc,desc'
+            'sort_direction' => 'sometimes|in:asc,desc',
         ];
-    }
-
-    /**
-     * @param Validator $validator
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 }

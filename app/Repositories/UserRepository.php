@@ -8,6 +8,6 @@ class UserRepository extends Repository
 {
     public function __construct(User $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 }
